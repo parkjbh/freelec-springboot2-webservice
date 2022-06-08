@@ -1,0 +1,33 @@
+buildscript {
+    ext {
+        springBootVersion = '2.1.7.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        // jcenter() // 왜 못쓰게 하는지는 확인해 봐야겠지? 아마이것도 Gradle 7.0이후부터 개선이 되서 바뀐게 아닐까 싶음.
+    }
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group 'com.jojoldu.book'
+version '1.0-SNAPSHOT'
+sourceCompatibility = 1.11 // 책이랑 다른점 나는 8 자바가 아님 11임 -> 얘도 버전이 다른가봄..
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation('org.springframework.boot:spring-boot-starter-web') // 책에서는 compile -> implementation 변경됨 Gradle 7.0(2021.04.09) 이후로 변경 됨.
+    testImplementation('org.springframework.boot:spring-boot-starter-test') // 책에서는 testCompile -> testImplementation 변경됨 Gradle 7.0(2021.04.09) 이후로 변경 됨.
+    // testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    // testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
